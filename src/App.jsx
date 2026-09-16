@@ -5,40 +5,46 @@ function App() {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
-      backgroundColor: '#090d16',
-      color: '#f8fafc',
-      fontFamily: "'Inter', sans-serif"
+      background: 'linear-gradient(135deg, #e0f2fe 0%, #fef3c7 100%)',
+      fontFamily: "'Segoe UI', Roboto, sans-serif"
     }}>
       <div style={{
-        padding: '36px',
-        borderRadius: '20px',
-        backgroundColor: '#111827',
-        border: '1px solid #1f2937',
-        boxShadow: '0 0 40px rgba(59, 130, 246, 0.15)',
+        backgroundColor: '#ffffff',
+        padding: '40px',
+        borderRadius: '24px',
+        boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)',
         textAlign: 'center',
-        width: '360px'
+        maxWidth: '400px',
+        width: '90%'
       }}>
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          margin: '0 0 8px 0',
-          background: 'linear-gradient(to right, #60a5fa, #a78bfa)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
+        <div style={{
+          display: 'inline-block',
+          padding: '6px 16px',
+          borderRadius: '20px',
+          backgroundColor: '#dbeafe',
+          color: '#1d4ed8',
+          fontWeight: 'bold',
+          fontSize: '0.875rem',
+          marginBottom: '16px'
         }}>
-          Hello World!
-        </h1>
-        <h3 style={{ color: '#9ca3af', fontWeight: '400', marginTop: 0 }}>React.js Application</h3>
+          React.js Project
+        </div>
+        <h1 style={{ fontSize: '2.2rem', color: '#0f172a', margin: '0 0 10px 0' }}>Hello World! </h1>
+        <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '24px' }}>Web Application Development</p>
         
         <div style={{
-          marginTop: '24px',
-          padding: '16px',
-          borderRadius: '12px',
-          backgroundColor: '#1f2937',
-          borderLeft: '4px solid #3b82f6',
+          backgroundColor: '#f8fafc',
+          padding: '16px 20px',
+          borderRadius: '16px',
+          border: '1px solid #e2e8f0',
           textAlign: 'left'
         }}>
-          <p style={{ margin: '4px 0', color: '#e5e7eb' }}><strong>Họ tên:</strong> Nguyễn Thị Cẩm Phụng</p>
-          <p style={{ margin: '4px 0', color: '#e5e7eb' }}><strong>MSSV:</strong> 25560047</p>
+          <p style={{ margin: '6px 0', fontSize: '1rem', color: '#334155' }}>
+            <span style={{ color: '#64748b' }}>Sinh viên:</span> <strong>Nguyen Thi Cam Phung </strong>
+          </p>
+          <p style={{ margin: '6px 0', fontSize: '1rem', color: '#334155' }}>
+            <span style={{ color: '#64748b' }}>MSSV:</span> <strong style={{ color: '#2563eb' }}>25560047</strong>
+          </p>
         </div>
       </div>
     </div>
