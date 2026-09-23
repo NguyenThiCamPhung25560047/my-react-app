@@ -1,18 +1,32 @@
 import { useState } from 'react';
 
 function App() {
-  const [power, setPower] = useState(1);
   const [activeTab, setActiveTab] = useState('profile');
-  const [logs, setLogs] = useState(['[SYSTEM] React Creative Dashboard Active']);
+  const [score, setScore] = useState(0);
+  const [cardResult, setCardResult] = useState({ emoji: '❓', text: 'Bấm nút để lật thẻ!' });
+  const [streak, setStreak] = useState(0);
 
-  const addLog = (msg) => {
-    const time = new Date().toLocaleTimeString();
-    setLogs((prev) => [`[${time}] ${msg}`, ...prev.slice(0, 2)]);
+  const fortunes = [
+    { emoji: '🌟', text: 'Siêu May Mắn! (+10 Điểm)', points: 10 },
+    { emoji: '🔥', text: 'Rực Rỡ! (+5 Điểm)', points: 5 },
+    { emoji: '⚡', text: 'Tăng Tốc! (+3 Điểm)', points: 3 },
+    { emoji: '🍀', text: 'Bình An! (+1 Điểm)', points: 1 },
+    { emoji: '💥', text: 'Nổ Hũ Bonus! (+20 Điểm)', points: 20 },
+  ];
+
+  const handleDrawCard = () => {
+    const randomIndex = Math.floor(Math.random() * fortunes.length);
+    const selected = fortunes[randomIndex];
+    
+    setCardResult(selected);
+    setScore((prev) => prev + selected.points);
+    setStreak((prev) => prev + 1);
   };
 
-  const handleBoost = () => {
-    setPower((prev) => prev + 1);
-    addLog(`✨ Boosted power level to ${power + 1}!`);
+  const handleResetGame = () => {
+    setScore(0);
+    setStreak(0);
+    setCardResult({ emoji: '❓', text: 'Bấm nút để lật thẻ!' });
   };
 
   return (
@@ -54,7 +68,7 @@ function App() {
           marginBottom: '20px'
         }}>
           <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#c084fc', boxShadow: '0 0 10px #c084fc' }}></span>
-          REACT PROJECT
+          REACT MINI GAME APP
         </div>
 
         {/* Title */}
@@ -95,28 +109,28 @@ function App() {
               fontSize: '0.8rem'
             }}
           >
-            👤 Info
+            👤 Thí Sinh
           </button>
           <button 
-            onClick={() => setActiveTab('status')}
+            onClick={() => setActiveTab('game')}
             style={{
               flex: 1,
               padding: '8px',
               borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'status' ? '#38bdf8' : 'transparent',
-              color: activeTab === 'status' ? '#0f172a' : '#94a3b8',
+              background: activeTab === 'game' ? '#38bdf8' : 'transparent',
+              color: activeTab === 'game' ? '#0f172a' : '#94a3b8',
               fontWeight: 'bold',
               cursor: 'pointer',
               fontSize: '0.8rem'
             }}
           >
-            ⚡ Status
+            🎮 Mini Game
           </button>
         </div>
 
-        {/* Tab Content */}
-        {activeTab === 'profile' ? (
+        {/* Tab 1: Profile */}
+        {activeTab === 'profile' && (
           <div style={{
             background: 'rgba(15, 23, 42, 0.6)',
             padding: '16px 20px',
@@ -126,70 +140,80 @@ function App() {
             marginBottom: '20px'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>STUDENT</span>
+              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Sinh viên:</span>
               <span style={{ color: '#f1f5f9', fontWeight: '600', fontSize: '0.9rem' }}>Nguyen Thi Cam Phung</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>ID NUMBER</span>
+              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>MSSV:</span>
               <span style={{ color: '#38bdf8', fontWeight: '700', fontSize: '0.9rem', fontFamily: 'monospace' }}>25560047</span>
-            </div>
-          </div>
-        ) : (
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            padding: '16px 20px',
-            borderRadius: '16px',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
-            textAlign: 'left',
-            marginBottom: '20px'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>SYSTEM STATE</span>
-              <span style={{ color: '#4ade80', fontWeight: '600', fontSize: '0.9rem' }}>Online 🟢</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>POWER LEVEL</span>
-              <span style={{ color: '#c084fc', fontWeight: '700', fontSize: '0.9rem' }}>Level {power}</span>
             </div>
           </div>
         )}
 
-        {/* Interactive Boost Button */}
-        <button 
-          onClick={handleBoost}
-          style={{
-            width: '100%',
-            padding: '14px',
+        {/* Tab 2: Mini Game Section */}
+        {activeTab === 'game' && (
+          <div style={{
+            background: 'rgba(15, 23, 42, 0.6)',
+            padding: '20px',
             borderRadius: '16px',
-            border: 'none',
-            background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-            color: '#fff',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)',
-            fontSize: '0.9rem',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
             marginBottom: '20px'
-          }}
-        >
-          🚀 Power Boost ({power})
-        </button>
+          }}>
+            {/* Scoreboard */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '0.85rem' }}>
+              <span>🏆 Điểm: <strong style={{ color: '#38bdf8', fontSize: '1.1rem' }}>{score}</strong></span>
+              <span>🔥 Lượt chơi: <strong style={{ color: '#c084fc', fontSize: '1.1rem' }}>{streak}</strong></span>
+            </div>
 
-        {/* Live Console Logs */}
-        <div style={{
-          background: '#090d16',
-          borderRadius: '12px',
-          padding: '10px 14px',
-          textAlign: 'left',
-          border: '1px solid rgba(255, 255, 255, 0.05)'
-        }}>
-          <div style={{ fontFamily: 'monospace', fontSize: '0.7rem', color: '#34d399' }}>
-            {logs.map((log, index) => (
-              <div key={index} style={{ opacity: 1 - index * 0.3, marginTop: '2px' }}>
-                {log}
-              </div>
-            ))}
+            {/* Card Result Area */}
+            <div style={{
+              background: '#090d16',
+              borderRadius: '12px',
+              padding: '16px',
+              marginBottom: '16px',
+              border: '1px solid rgba(168, 85, 247, 0.2)'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '6px' }}>{cardResult.emoji}</div>
+              <div style={{ fontSize: '0.85rem', color: '#f1f5f9', fontWeight: '500' }}>{cardResult.text}</div>
+            </div>
+
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button 
+                onClick={handleDrawCard}
+                style={{
+                  flex: 2,
+                  padding: '12px',
+                  borderRadius: '12px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                  color: '#fff',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  fontSize: '0.85rem'
+                }}
+              >
+                🎴 Rút Thẻ May Mắn
+              </button>
+              <button 
+                onClick={handleResetGame}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  background: 'transparent',
+                  color: '#94a3b8',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  fontSize: '0.8rem'
+                }}
+              >
+                🔄 Chơi lại
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </div>
