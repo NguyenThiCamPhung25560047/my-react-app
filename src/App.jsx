@@ -3,15 +3,16 @@ import { useState } from 'react';
 function App() {
   const [activeTab, setActiveTab] = useState('game');
   const [score, setScore] = useState(0);
-  const [cardResult, setCardResult] = useState({ emoji: '❓', text: 'Draw a card to test your luck!' });
+  const [cardResult, setCardResult] = useState({ emoji: '🃏', text: 'Draw a card to unleash your fortune!' });
   const [streak, setStreak] = useState(0);
 
+  // Mức điểm thưởng cao bùng nổ
   const fortunes = [
-    { emoji: '🌟', text: 'Bá khí! (+10 PTS)', points: 10 },
-    { emoji: '🔥', text: 'Aura farming! (+5 PTS)', points: 5 },
-    { emoji: '⚡', text: 'Tuyệt vời, uống nào! (+3 PTS)', points: 3 },
-    { emoji: '🍀', text: 'Chúc bạn may mắn lần sau! (+1 PTS)', points: 1 },
-    { emoji: '💥', text: 'Nổ hũ! (+20 PTS)', points: 20 },
+    { emoji: '👑', text: 'NỔ HỦ (+500 PTS)', points: 500 },
+    { emoji: '🔥', text: 'BÁ KHÍ (+250 PTS)', points: 250 },
+    { emoji: '🥂', text: 'TUYỆT VỜI, UỐNG NÀO (+100 PTS)', points: 100 },
+    { emoji: '⚡', text: 'CHÚC BẠN MAY MẮN LẦN SAU (+50 PTS)', points: 50 },
+    { emoji: '🌟', text: 'AURA FARMING (+150 PTS)', points: 150 },
   ];
 
   const handleDrawCard = () => {
@@ -26,15 +27,15 @@ function App() {
   const handleResetGame = () => {
     setScore(0);
     setStreak(0);
-    setCardResult({ emoji: '❓', text: 'Draw a card to test your luck!' });
+    setCardResult({ emoji: '🃏', text: 'Draw a card to unleash your fortune!' });
   };
 
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#0b0f19',
+      background: 'radial-gradient(circle at top, #2e1065 0%, #0f172a 100%)',
       color: '#f8fafc',
-      fontFamily: "'Inter', 'Segoe UI', sans-serif",
+      fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -44,45 +45,46 @@ function App() {
       <div style={{
         maxWidth: '420px',
         width: '100%',
-        background: 'rgba(30, 41, 59, 0.7)',
-        backdropFilter: 'blur(16px)',
-        borderRadius: '24px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        background: 'rgba(30, 27, 75, 0.65)',
+        backdropFilter: 'blur(20px)',
+        borderRadius: '28px',
+        border: '1px solid rgba(251, 191, 36, 0.25)',
         padding: '32px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.2)',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(245, 158, 11, 0.15)',
         textAlign: 'center'
       }}>
         
-        {/* Top Badge */}
+        {/* Top Badge - Warm Gold & Purple Accent */}
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
           padding: '6px 16px',
           borderRadius: '9999px',
-          background: 'linear-gradient(90deg, rgba(99,102,241,0.2) 0%, rgba(168,85,247,0.2) 100%)',
-          border: '1px solid rgba(168, 85, 247, 0.3)',
-          color: '#c084fc',
+          background: 'linear-gradient(90deg, rgba(245,158,11,0.15) 0%, rgba(168,85,247,0.2) 100%)',
+          border: '1px solid rgba(251, 191, 36, 0.4)',
+          color: '#fde047',
           fontSize: '0.8rem',
-          fontWeight: '600',
+          fontWeight: '700',
+          letterSpacing: '0.5px',
           marginBottom: '20px'
         }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#c084fc', boxShadow: '0 0 10px #c084fc' }}></span>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#fde047', boxShadow: '0 0 10px #fde047' }}></span>
           REACT MINI GAME APP
         </div>
 
-        {/* Title */}
+        {/* Title - Sunset Gold Gradient */}
         <h1 style={{
-          fontSize: '2.4rem',
+          fontSize: '2.5rem',
           fontWeight: '800',
           margin: '0 0 6px 0',
-          background: 'linear-gradient(to right, #818cf8, #c084fc, #f472b6)',
+          background: 'linear-gradient(to right, #fef08a, #f59e0b, #ec4899)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>
           Hello World!
         </h1>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '0 0 20px 0' }}>
+        <p style={{ color: '#cbd5e1', fontSize: '0.9rem', margin: '0 0 20px 0', fontWeight: '500' }}>
           Interactive Web Application
         </p>
 
@@ -91,23 +93,25 @@ function App() {
           display: 'flex',
           gap: '8px',
           background: 'rgba(15, 23, 42, 0.6)',
-          padding: '4px',
-          borderRadius: '12px',
-          marginBottom: '20px'
+          padding: '5px',
+          borderRadius: '16px',
+          marginBottom: '20px',
+          border: '1px solid rgba(255, 255, 255, 0.05)'
         }}>
           <button 
             onClick={() => setActiveTab('profile')}
             style={{
               flex: 1,
-              padding: '8px',
-              borderRadius: '8px',
+              padding: '10px',
+              borderRadius: '12px',
               border: 'none',
-              background: activeTab === 'profile' ? '#38bdf8' : 'transparent',
-              color: activeTab === 'profile' ? '#0f172a' : '#94a3b8',
-              fontWeight: 'bold',
+              background: activeTab === 'profile' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : 'transparent',
+              color: activeTab === 'profile' ? '#fff' : '#94a3b8',
+              fontWeight: '700',
               cursor: 'pointer',
-              fontSize: '0.8rem',
-              transition: 'all 0.2s'
+              fontSize: '0.85rem',
+              boxShadow: activeTab === 'profile' ? '0 4px 12px rgba(245, 158, 11, 0.3)' : 'none',
+              transition: 'all 0.2s ease'
             }}
           >
             👤 Profile
@@ -116,15 +120,16 @@ function App() {
             onClick={() => setActiveTab('game')}
             style={{
               flex: 1,
-              padding: '8px',
-              borderRadius: '8px',
+              padding: '10px',
+              borderRadius: '12px',
               border: 'none',
-              background: activeTab === 'game' ? '#38bdf8' : 'transparent',
-              color: activeTab === 'game' ? '#0f172a' : '#94a3b8',
-              fontWeight: 'bold',
+              background: activeTab === 'game' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : 'transparent',
+              color: activeTab === 'game' ? '#fff' : '#94a3b8',
+              fontWeight: '700',
               cursor: 'pointer',
-              fontSize: '0.8rem',
-              transition: 'all 0.2s'
+              fontSize: '0.85rem',
+              boxShadow: activeTab === 'game' ? '0 4px 12px rgba(245, 158, 11, 0.3)' : 'none',
+              transition: 'all 0.2s ease'
             }}
           >
             🎮 Mini Game
@@ -134,20 +139,20 @@ function App() {
         {/* Tab 1: Profile */}
         {activeTab === 'profile' && (
           <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            padding: '16px 20px',
-            borderRadius: '16px',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            background: 'rgba(15, 23, 42, 0.5)',
+            padding: '18px 20px',
+            borderRadius: '18px',
+            border: '1px solid rgba(251, 191, 36, 0.15)',
             textAlign: 'left',
             marginBottom: '20px'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Student:</span>
-              <span style={{ color: '#f1f5f9', fontWeight: '600', fontSize: '0.9rem' }}>Nguyen Thi Cam Phung</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Student:</span>
+              <span style={{ color: '#fef08a', fontWeight: '600', fontSize: '0.9rem' }}>Nguyen Thi Cam Phung</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Student ID:</span>
-              <span style={{ color: '#38bdf8', fontWeight: '700', fontSize: '0.9rem', fontFamily: 'monospace' }}>25560047</span>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Student ID:</span>
+              <span style={{ color: '#f59e0b', fontWeight: '700', fontSize: '0.95rem', fontFamily: 'monospace' }}>25560047</span>
             </div>
           </div>
         )}
@@ -155,32 +160,33 @@ function App() {
         {/* Tab 2: Mini Game Section */}
         {activeTab === 'game' && (
           <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
+            background: 'rgba(15, 23, 42, 0.5)',
             padding: '20px',
-            borderRadius: '16px',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            borderRadius: '18px',
+            border: '1px solid rgba(251, 191, 36, 0.15)',
             marginBottom: '20px'
           }}>
             {/* Scoreboard */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '0.85rem' }}>
-              <span>🏆 Score: <strong style={{ color: '#38bdf8', fontSize: '1.1rem' }}>{score}</strong></span>
-              <span>🔥 Draws: <strong style={{ color: '#c084fc', fontSize: '1.1rem' }}>{streak}</strong></span>
+              <span>🏆 Score: <strong style={{ color: '#fde047', fontSize: '1.2rem' }}>{score}</strong></span>
+              <span>🔥 Draws: <strong style={{ color: '#f472b6', fontSize: '1.2rem' }}>{streak}</strong></span>
             </div>
 
             {/* Card Result Area */}
             <div style={{
-              background: '#090d16',
-              borderRadius: '12px',
-              padding: '16px',
+              background: 'rgba(10, 15, 30, 0.8)',
+              borderRadius: '14px',
+              padding: '18px',
               marginBottom: '16px',
-              border: '1px solid rgba(168, 85, 247, 0.2)'
+              border: '1px solid rgba(245, 158, 11, 0.3)',
+              boxShadow: 'inset 0 0 15px rgba(245, 158, 11, 0.05)'
             }}>
-              <div style={{ fontSize: '2.5rem', marginBottom: '6px' }}>{cardResult.emoji}</div>
-              <div style={{ fontSize: '0.85rem', color: '#f1f5f9', fontWeight: '500' }}>{cardResult.text}</div>
+              <div style={{ fontSize: '2.8rem', marginBottom: '6px' }}>{cardResult.emoji}</div>
+              <div style={{ fontSize: '0.9rem', color: '#fef08a', fontWeight: '700' }}>{cardResult.text}</div>
             </div>
 
             {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div style={{ display: 'flex', gap: '10px' }}>
               <button 
                 onClick={handleDrawCard}
                 style={{
@@ -188,12 +194,12 @@ function App() {
                   padding: '12px',
                   borderRadius: '12px',
                   border: 'none',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                  background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
                   color: '#fff',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                   fontSize: '0.85rem',
-                  boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)'
+                  boxShadow: '0 4px 15px rgba(217, 119, 6, 0.4)'
                 }}
               >
                 🎴 Draw Luck Card
@@ -204,10 +210,10 @@ function App() {
                   flex: 1,
                   padding: '12px',
                   borderRadius: '12px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  background: 'transparent',
-                  color: '#94a3b8',
-                  fontWeight: '500',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  background: 'rgba(30, 41, 59, 0.5)',
+                  color: '#cbd5e1',
+                  fontWeight: '600',
                   cursor: 'pointer',
                   fontSize: '0.8rem'
                 }}
