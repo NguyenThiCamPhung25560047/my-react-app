@@ -8,11 +8,11 @@ function App() {
 
   const fortunes = [
     { emoji: '👑', text: 'Nổ hũ (+500 PTS)', points: 500 },
-    { emoji: '💎', text: 'Bá khí (+300 PTS)', points: 300 },
+    { emoji: '🐴', text: 'Bá khí (+300 PTS)', points: 300 },
     { emoji: '⚡', text: 'Aura farming (+200 PTS)', points: 200 },
     { emoji: '🍷', text: 'Tuyệt vời, uống nào (+150 PTS)', points: 150 },
     { emoji: '💣', text: '1 quả bom (+100 PTS)', points: 100 },
-    { emoji: '🎲', text: 'Chúc bạn may mắn lần sau (+80 PTS)', points: 80 },
+    { emoji: '🃏', text: 'Chúc bạn may mắn lần sau (+80 PTS)', points: 80 },
     { emoji: '💥', text: 'Cú nổ lớn (+400 PTS)', points: 400 },
   ];
 
@@ -34,7 +34,12 @@ function App() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #fef08a 0%, #f43f5e 50%, #8b5cf6 100%)',
+      backgroundColor: '#fef08a',
+      backgroundImage: `
+        radial-gradient(circle at 20% 20%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-size='22' opacity='0.18'%3E🎰%3C/text%3E%3Ctext x='70' y='35' font-size='22' opacity='0.18'%3E🎲%3C/text%3E%3Ctext x='40' y='75' font-size='22' opacity='0.18'%3E🪙%3C/text%3E%3Ctext x='90' y='80' font-size='22' opacity='0.18'%3E💎%3C/text%3E%3Ctext x='15' y='110' font-size='22' opacity='0.18'%3E🃏%3C/text%3E%3Ctext x='75' y='115' font-size='22' opacity='0.18'%3E🎟️%3C/text%3E%3C/svg%3E")
+      `,
       color: '#0f172a',
       fontFamily: "'Inter', 'Segoe UI', sans-serif",
       display: 'flex',
@@ -50,8 +55,10 @@ function App() {
         borderRadius: '28px',
         border: '4px solid #f59e0b',
         padding: '32px',
-        boxShadow: '0 25px 50px -12px rgba(244, 63, 94, 0.4), 0 0 35px rgba(245, 158, 11, 0.5)',
-        textAlign: 'center'
+        boxShadow: '0 25px 50px -12px rgba(244, 63, 94, 0.35), 0 0 35px rgba(245, 158, 11, 0.4)',
+        textAlign: 'center',
+        position: 'relative',
+        zIndex: 1
       }}>
         
         <div style={{
@@ -171,13 +178,18 @@ function App() {
             <div style={{
               background: '#ffffff',
               borderRadius: '18px',
-              padding: '20px',
+              padding: '16px 12px',
               marginBottom: '16px',
               border: '3px solid #f59e0b',
-              boxShadow: '0 8px 16px rgba(245, 158, 11, 0.15)'
+              boxShadow: '0 8px 16px rgba(245, 158, 11, 0.15)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
             }}>
-              <div style={{ fontSize: '3.5rem', marginBottom: '8px' }}>{cardResult.emoji}</div>
-              <div style={{ fontSize: '1rem', color: '#b45309', fontWeight: '800' }}>{cardResult.text}</div>
+              <div style={{ fontSize: '2.2rem', lineHeight: '1' }}>{cardResult.emoji}</div>
+              <div style={{ fontSize: '0.95rem', color: '#b45309', fontWeight: '800', wordBreak: 'break-word' }}>{cardResult.text}</div>
             </div>
 
             <div style={{ display: 'flex', gap: '10px' }}>
