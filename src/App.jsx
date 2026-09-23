@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState('game');
   const [score, setScore] = useState(0);
-  const [cardResult, setCardResult] = useState({ emoji: '❓', text: 'Bấm nút để lật thẻ!' });
+  const [cardResult, setCardResult] = useState({ emoji: '❓', text: 'Draw a card to test your luck!' });
   const [streak, setStreak] = useState(0);
 
   const fortunes = [
-    { emoji: '🌟', text: 'Siêu May Mắn! (+10 Điểm)', points: 10 },
-    { emoji: '🔥', text: 'Rực Rỡ! (+5 Điểm)', points: 5 },
-    { emoji: '⚡', text: 'Tăng Tốc! (+3 Điểm)', points: 3 },
-    { emoji: '🍀', text: 'Bình An! (+1 Điểm)', points: 1 },
-    { emoji: '💥', text: 'Nổ Hũ Bonus! (+20 Điểm)', points: 20 },
+    { emoji: '🌟', text: 'Bá khí! (+10 PTS)', points: 10 },
+    { emoji: '🔥', text: 'Aura farming! (+5 PTS)', points: 5 },
+    { emoji: '⚡', text: 'Tuyệt vời, uống nào! (+3 PTS)', points: 3 },
+    { emoji: '🍀', text: 'Chúc bạn may mắn lần sau! (+1 PTS)', points: 1 },
+    { emoji: '💥', text: 'Nổ hũ! (+20 PTS)', points: 20 },
   ];
 
   const handleDrawCard = () => {
@@ -26,7 +26,7 @@ function App() {
   const handleResetGame = () => {
     setScore(0);
     setStreak(0);
-    setCardResult({ emoji: '❓', text: 'Bấm nút để lật thẻ!' });
+    setCardResult({ emoji: '❓', text: 'Draw a card to test your luck!' });
   };
 
   return (
@@ -106,10 +106,11 @@ function App() {
               color: activeTab === 'profile' ? '#0f172a' : '#94a3b8',
               fontWeight: 'bold',
               cursor: 'pointer',
-              fontSize: '0.8rem'
+              fontSize: '0.8rem',
+              transition: 'all 0.2s'
             }}
           >
-            👤 Thí Sinh
+            👤 Profile
           </button>
           <button 
             onClick={() => setActiveTab('game')}
@@ -122,7 +123,8 @@ function App() {
               color: activeTab === 'game' ? '#0f172a' : '#94a3b8',
               fontWeight: 'bold',
               cursor: 'pointer',
-              fontSize: '0.8rem'
+              fontSize: '0.8rem',
+              transition: 'all 0.2s'
             }}
           >
             🎮 Mini Game
@@ -140,11 +142,11 @@ function App() {
             marginBottom: '20px'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Sinh viên:</span>
+              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Student:</span>
               <span style={{ color: '#f1f5f9', fontWeight: '600', fontSize: '0.9rem' }}>Nguyen Thi Cam Phung</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>MSSV:</span>
+              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Student ID:</span>
               <span style={{ color: '#38bdf8', fontWeight: '700', fontSize: '0.9rem', fontFamily: 'monospace' }}>25560047</span>
             </div>
           </div>
@@ -161,8 +163,8 @@ function App() {
           }}>
             {/* Scoreboard */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '0.85rem' }}>
-              <span>🏆 Điểm: <strong style={{ color: '#38bdf8', fontSize: '1.1rem' }}>{score}</strong></span>
-              <span>🔥 Lượt chơi: <strong style={{ color: '#c084fc', fontSize: '1.1rem' }}>{streak}</strong></span>
+              <span>🏆 Score: <strong style={{ color: '#38bdf8', fontSize: '1.1rem' }}>{score}</strong></span>
+              <span>🔥 Draws: <strong style={{ color: '#c084fc', fontSize: '1.1rem' }}>{streak}</strong></span>
             </div>
 
             {/* Card Result Area */}
@@ -190,10 +192,11 @@ function App() {
                   color: '#fff',
                   fontWeight: 'bold',
                   cursor: 'pointer',
-                  fontSize: '0.85rem'
+                  fontSize: '0.85rem',
+                  boxShadow: '0 4px 15px rgba(99, 102, 241, 0.3)'
                 }}
               >
-                🎴 Rút Thẻ May Mắn
+                🎴 Draw Luck Card
               </button>
               <button 
                 onClick={handleResetGame}
@@ -209,7 +212,7 @@ function App() {
                   fontSize: '0.8rem'
                 }}
               >
-                🔄 Chơi lại
+                🔄 Reset
               </button>
             </div>
           </div>
